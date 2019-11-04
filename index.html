@@ -7,9 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-        <script src="./xlsx.full.min.js"></script>
+
+        <!-- <script src="./xlsx.core.min.js"></script> -->
+        <!-- <script src="node_modules/xlsx-style/dist/xlsx.core.min.js"></script> -->
+<!--        <script src="./xlsx.full.min.js"></script>-->
+        <script src="jszip.js"></script>
+        <script src="xlsx.js"></script>
+
     <script src="downloadExcel.js"></script>
-   
+
     <button id="btn">点击</button>
 </body>
 <script>
@@ -17,7 +23,32 @@
             detail: ['微信号ID', '微信号', '微信昵称', '号库资源', '是否通过', '备注', '打招呼', '打招呼备注']
     }
     console.log(XLSX)
-const SheetNames = ['加粉执行明细']
+
+    /**
+     * config 配置项
+     *
+        hidden?: boolean; // 如果为true 代表该列是隐藏的
+        // 设置列的宽度有以下集中方式
+        wpx?:    number;   屏幕像素宽度
+        width?:  number;    Excel“最大位数宽度”中的宽度，宽度* 256为整数
+        wch?:    number;  // 字符宽度
+     */
+
+
+     /**
+      * merges: [{ //合并第一行数据[B1,C1,D1,E1]
+        s: {//s为开始
+            c: 1,//开始列
+            r: 0//可以看成开始行,实际是取值范围
+        },
+        e: {//e结束
+            c: 4,//结束列
+            r: 0//结束行
+        }}]
+      *
+      */
+    // sheet的名字
+    const SheetNames = ['加粉执行明细']
     let btn = document.getElementById("btn")
     btn.onclick = function(){
         console.log(XLSX)
@@ -28,14 +59,28 @@ const SheetNames = ['加粉执行明细']
               ["38246","wxid_wk0juvezfzs422","萌妹记事册","18656560190","是","加粉成功","是","Catcher 1"],
               ["38248","wxid_lnd4ei9xseen22","小施个人心水接待","18656560190","否","已经是好友，不需要添加","是","Catcher 1"]
             ],
-            "config":{"!cols":[{"wch":8},{"wch":20},{"wch":20},{"wch":20},{"wch":15},{"wch":30},{"wch":15},{"wch":25}]}}]
+            "config":{"!cols":[{"wch":8},{"wch":20},{"wch":20},{"wch":20},{"wch":15},{"wch":30},{"wch":15},{"wch":25}]},
+            merges: [{ //合并第一行数据[B1,C1,D1,E1]
+                s: {//s为开始
+                    c: 1,//开始列
+                    r: 0//可以看成开始行,实际是取值范围
+                },
+                e: {//e结束
+                    c: 7,//结束列
+                    r: 0//结束行
+                }}]
+        }]
+
+
+
+
             outputXlsxInArray.bind(XLSX, {
                 xslx: `加粉任务报表`,
                 SheetNames,
                 Sheets
             })()
     }
-    
+
 
 </script>
 </html>
