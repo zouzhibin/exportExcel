@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script src="./xlsx.full.min.js"></script>
+    <script src="downloadExcel.js"></script>
+   
+    <button id="btn">点击</button>
+</body>
+<script>
+    const headers = {
+            detail: ['微信号ID', '微信号', '微信昵称', '号库资源', '是否通过', '备注', '打招呼', '打招呼备注']
+    }
+    console.log(XLSX)
+const SheetNames = ['加粉执行明细']
+    let btn = document.getElementById("btn")
+    btn.onclick = function(){
+        console.log(XLSX)
+        let Sheets = [
+          {
+            "headers":["微信号ID","微信号","微信昵称","号库资源","是否通过","备注","打招呼","打招呼备注"],
+            "data":[
+              ["38246","wxid_wk0juvezfzs422","萌妹记事册","18656560190","是","加粉成功","是","Catcher 1"],
+              ["38248","wxid_lnd4ei9xseen22","小施个人心水接待","18656560190","否","已经是好友，不需要添加","是","Catcher 1"]
+            ],
+            "config":{"!cols":[{"wch":8},{"wch":20},{"wch":20},{"wch":20},{"wch":15},{"wch":30},{"wch":15},{"wch":25}]}}]
+            outputXlsxInArray.bind(XLSX, {
+                xslx: `加粉任务报表`,
+                SheetNames,
+                Sheets
+            })()
+    }
+    
+
+</script>
+</html>
